@@ -3,7 +3,7 @@ var cartButton = document.getElementById("cart");
 
 var addButtons = document.getElementsByClassName("button");
 
-var items = [
+var items = [ 
   {
     name: "This was our pact",
     quantity: 0,
@@ -123,7 +123,8 @@ function updatePrice() {
 
 cartButton.onclick = () => {
   updatePrice();
-
+  whatsappai();
+  window.open(whatsapp,("blank"))
 
   for (let index = 0; index < items.length; index++) {
     if (items[index].quantity != 0) {
@@ -140,3 +141,13 @@ cartButton.onclick = () => {
     "The total amount is " + finalDollars + "$ and " + finalCents + " cents"
   );
 };
+
+var whatsapp = `https://api.whatsapp.com/send?pgone=9199299929292&text=Order%20details`
+function whatsappai() {
+  for (let i = 0; i < items.length; i++){
+    if(items[i].quantity != 0){
+      whatsapp += `${items[i].name} and ${items[i].quantity}`
+    }
+  }
+  whatsapp += `The total amount is ${finalDollars} and ${finalCents}cents`
+}
